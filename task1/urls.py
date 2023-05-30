@@ -17,13 +17,18 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from feed.products import views
+from feed.products.views import ProductAPI, ProductDetailAPI
+from feed.accounts.views import RegistrationAPI, LoginAPI, ConfirmAPIView
 from task1.settings.base import MEDIA_URL, MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/products/', views.ProductAPI.as_view()),
-    path('api/v1/products/<int:pk>/', views.ProductDetailAPI.as_view())
+    path('api/v1/products/', ProductAPI.as_view()),
+    path('api/v1/products/<int:pk>/', ProductDetailAPI.as_view()),
+
+    path('api/v1/register/', RegistrationAPI.as_view()),
+    path('api/v1/register/confirm/', ConfirmAPIView.as_view()),
+    path('api/v1/login/', LoginAPI.as_view())
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

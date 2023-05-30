@@ -1,10 +1,10 @@
 
 from rest_framework import generics
 
-from .filters import *
-from .serializers import *
+from feed.products.filters import ProductFilter
+from feed.products.serializers import ProductValidateSerializer
 from rest_framework.pagination import PageNumberPagination
-from .models import *
+from feed.products.models import Product
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from feed.products.models import Product
 
 class ProductValidateSerializer(serializers.Serializer):
     image = serializers.ImageField()

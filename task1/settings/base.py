@@ -26,6 +26,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Application definition
@@ -38,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "feed.products",
+    "feed.accounts",
     "rest_framework",
-    "django_filters"
+    "django_filters",
+    "rest_framework_simplejwt"
+
 ]
 
 MIDDLEWARE = [
@@ -56,9 +60,7 @@ ROOT_URLCONF = 'task1.urls'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        'rest_framework.authentication.TokenAuthentication'
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
